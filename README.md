@@ -52,6 +52,29 @@ The app shows only the **final response** to the user.
 
 ---
 
+## 💻 Streamlit App
+
+We developed an interactive **Streamlit web application** that connects directly to **JamAI Base Tables** to provide AI-powered assistance for Malaysian students.
+
+The app allows users to:
+
+- Select between **four AI assistants**  
+  - 🎓 Scholarship Assistant  
+  - 📝 Assignment Assistant  
+  - 🏛️ University SOP Assistant  
+  - ❓ FAQ Assistant  
+- Enter questions naturally (chat-style input)
+- Receive instant, AI-generated **final responses** powered by JamAI Base
+- View **chat history** stored per assistant
+- Switch assistants seamlessly at any time
+
+---
+
+### 🚀 Open the Streamlit App Locally
+[🌐 Malaysian Student Assistant (Demo)]([https://ml-crop-prediction-czz87xcxsjmzvuvmjxskfl.streamlit.app/](https://ml-crop-prediction-czz87xcxsjmzvuvmjxskfl.streamlit.app/))
+
+---
+
 ## 🛠️ Tech Stack
 
 | Component | Technology |
