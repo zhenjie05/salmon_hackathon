@@ -3,3 +3,4 @@ jamaibase
 python-dotenv
 requests
 pycountry
+fastapi
