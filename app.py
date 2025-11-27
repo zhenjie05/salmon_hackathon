@@ -2,8 +2,8 @@ import streamlit as st
 from jamaibase import JamAI, types as t
 
 # --- HARDCODED CREDENTIALS ---
-PROJECT_ID = "YOUR_PROJECT_ID"
-PAT = "YOUR_PAT"
+PROJECT_ID = "proj_80340c2a0317eee7bc3aae55"
+PAT = "jamai_pat_49188da586bc90838807d00bb0d2ce9b585633f7d9ab07ca"
 
 # Initialize JamAI client
 client = JamAI(project_id=PROJECT_ID, pat=PAT)
