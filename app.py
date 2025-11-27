@@ -69,7 +69,7 @@ def run_table(client, table_id: str, user_query: str, stream: bool = True) -> st
 # UI
 # ==============================
 
-st.title("🇲🇾 Malaysian Student Assistant (JamAI Base)")
+st.title("Malaysian Student Assistant")
 st.caption("Select one assistant → ask any question → get instant response.")
 
 # Sidebar — Table names only
