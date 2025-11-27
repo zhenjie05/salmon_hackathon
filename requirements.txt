@@ -2,3 +2,4 @@ streamlit
 jamaibase
 python-dotenv
 requests
+pycountry
