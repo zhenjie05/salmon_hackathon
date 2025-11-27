@@ -61,8 +61,6 @@ The app shows only the **final response** to the user.
 | Language | Python |
 | Deployment | Any Streamlit environment |
 
----
 
-## 📦 Project Structure
 
 
