@@ -41,18 +41,15 @@ def run_table(client, table_id: str, user_query: str, stream: bool = True) -> st
         stream=stream
     )
 
-    placeholder = st.empty()
+    # removed streaming UI display
     accumulated = ""
 
-    # stream mode
     if stream:
         for chunk in client.table.add_table_rows(t.TableType.ACTION, req):
             if getattr(chunk, "output_column_name", "") == OUTPUT_COL[table_id]:
-                text = getattr(chunk, "text", "")
-                accumulated += text
-                placeholder.markdown(accumulated)
+                accumulated += getattr(chunk, "text", "")
 
-        # get final full result (non-stream)
+        # return final result (non-stream)
         final = client.table.add_table_rows(
             t.TableType.ACTION,
             t.MultiRowAddRequest(
@@ -62,14 +59,11 @@ def run_table(client, table_id: str, user_query: str, stream: bool = True) -> st
             )
         )
         row0 = final.rows[0]
-        final_text = getattr(row0.columns.get(OUTPUT_COL[table_id]), "text", "")
-        return final_text
+        return getattr(row0.columns.get(OUTPUT_COL[table_id]), "text", "")
 
-    # no streaming
     resp = client.table.add_table_rows(t.TableType.ACTION, req)
     row0 = resp.rows[0]
     return getattr(row0.columns.get(OUTPUT_COL[table_id]), "text", "")
-
 
 # ==============================
 # UI
@@ -140,7 +134,6 @@ for msg in history:
 # ==============================
 # User Input Area
 # ==============================
-
 user_query = st.text_area("Enter your question:")
 
 if st.button("Generate Response", type="primary"):
@@ -150,8 +143,6 @@ if st.button("Generate Response", type="primary"):
 
     # Add to chat history (user)
     history.append({"role": "user", "content": user_query})
-
-    st.subheader("AI Response (Streaming)")
 
     with st.spinner("Thinking..."):
         final_answer = run_table(client, selected_table, user_query, stream=True)
@@ -165,4 +156,3 @@ if st.button("Generate Response", type="primary"):
 
 # Update chat history
 st.session_state.chat_history[selected_table] = history
-
