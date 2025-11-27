@@ -78,7 +78,7 @@ def run_table(client, table_id: str, user_query: str, stream: bool = True) -> st
 st.title("🇲🇾 Malaysian Student Assistant (JamAI Base)")
 st.caption("Select one assistant → ask any question → get instant response.")
 
-# Sidebar — REMOVED JAMAI SETTINGS
+# Sidebar — Table names only
 with st.sidebar:
     st.subheader("Tables Overview")
     st.text(f"{SCHOLAR_TABLE}")
@@ -93,7 +93,7 @@ except Exception as e:
     st.error(f"JamAI config error: {e}")
     st.stop()
 
-# Main UI
+# Assistant selector
 assistant_choice = st.selectbox(
     "Choose an assistant:",
     [
@@ -104,6 +104,7 @@ assistant_choice = st.selectbox(
     ]
 )
 
+# Mapping for table selection
 mapping = {
     "Scholarship Assistant": SCHOLAR_TABLE,
     "Assignment Assistant": ASSIGN_TABLE,
@@ -112,17 +113,55 @@ mapping = {
 }
 selected_table = mapping[assistant_choice]
 
-user_query = st.text_area("Enter your question (BM or English):")
+# ==============================
+# Chat History Initialization
+# ==============================
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = {
+        SCHOLAR_TABLE: [],
+        ASSIGN_TABLE: [],
+        SOP_TABLE: [],
+        FAQ_TABLE: []
+    }
+
+# ==============================
+# Show Chat History for Assistant
+# ==============================
+st.subheader(f"💬 Chat with {assistant_choice}")
+
+history = st.session_state.chat_history[selected_table]
+
+for msg in history:
+    if msg["role"] == "user":
+        st.markdown(f"**🧑‍🎓 You:** {msg['content']}")
+    else:
+        st.markdown(f"**🤖 AI:** {msg['content']}")
+
+# ==============================
+# User Input Area
+# ==============================
+
+user_query = st.text_area("Enter your question:")
 
 if st.button("Generate Response", type="primary"):
     if not user_query.strip():
         st.warning("Please enter a question.")
         st.stop()
 
+    # Add to chat history (user)
+    history.append({"role": "user", "content": user_query})
+
     st.subheader("AI Response (Streaming)")
+
     with st.spinner("Thinking..."):
         final_answer = run_table(client, selected_table, user_query, stream=True)
+
+    # Save assistant response
+    history.append({"role": "assistant", "content": final_answer})
 
     st.success("Done!")
     st.markdown("### Final Response")
     st.write(final_answer)
+
+# Update chat history
+st.session_state.chat_history[selected_table] = history
