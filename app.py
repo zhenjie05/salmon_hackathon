@@ -78,13 +78,9 @@ def run_table(client, table_id: str, user_query: str, stream: bool = True) -> st
 st.title("🇲🇾 Malaysian Student Assistant (JamAI Base)")
 st.caption("Select one assistant → ask any question → get instant response.")
 
-# Sidebar config (CREDENTIAL INPUT REMOVED)
+# Sidebar — REMOVED JAMAI SETTINGS
 with st.sidebar:
-    st.subheader("JamAI Base Settings")
-    st.success("Using built-in credentials ✔️ (no input required)")
-
-    st.markdown("---")
-    st.subheader("Tables Overview (Read Only)")
+    st.subheader("Tables Overview")
     st.text(f"{SCHOLAR_TABLE}")
     st.text(f"{ASSIGN_TABLE}")
     st.text(f"{SOP_TABLE}")
