@@ -1,4 +1,4 @@
-# 🇲🇾 Malaysian Student Assistant (JamAI Base Hackathon Project)
+# Malaysian Student Assistant (JamAI Base Hackathon Project)
 
 An AI-powered Streamlit application built using **JamAI Base** to help Malaysian students with:
 
