@@ -68,10 +68,8 @@ The app allows users to:
 - View **chat history** stored per assistant
 - Switch assistants seamlessly at any time
 
----
-
 ### 🚀 Open the Streamlit App Locally
-[🌐 Malaysian Student Assistant (Demo)]([https://ml-crop-prediction-czz87xcxsjmzvuvmjxskfl.streamlit.app/](https://ml-crop-prediction-czz87xcxsjmzvuvmjxskfl.streamlit.app/))
+[🌐 Malaysian Student Assistant (Demo)](https://salmonhackathon-xzpn5emsvf9aqvhjrtp6bx.streamlit.app/#chat-with-scholarship-assistant)
 
 ---
 
